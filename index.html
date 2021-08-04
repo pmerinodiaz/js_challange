@@ -22,6 +22,29 @@
                 arr[count++] = 0;
         }
 
+        function pushZerosToStart(arr, n)
+        {
+            let count = 0; // Count of non-zero elements
+            let countZeros = 0;
+
+            // Traverse the array. If element encountered is non-
+            // zero, then replace the element at index 'count'
+            // with this element
+            for (let i = 0; i < n; i++)
+                if (arr[i] != 0)
+                    arr[count++] = arr[i]; // here count is
+                else                          // incremented
+                    countZeros++;
+            
+            let arrZeros = [];
+            for (let j = 0; j < countZeros; j++)
+                arrZeros[j] = 0;
+            
+            let combinedArray = arrZeros.concat(arr);
+
+            return combinedArray;
+        }
+
         function fictitiousInteger(arr)
         {
             let integerString = "";
@@ -29,6 +52,20 @@
             for (let i = 0; i < n; i++)
                 if (arr[i] != 0)
                     integerString += arr[i];
+            var integerInt = parseInt(integerString);
+            return integerInt;
+        }
+
+        function fictitiousInteger1Unit(arr)
+        {
+            let integerString = "";
+            let n = arr.length;
+            for (let i = 0; i < n; i++)
+                if (arr[i] != 0)
+                    if (arr[i] < 9 && arr[i] > 4)
+                        integerString += arr[i]+1;
+                    else
+                        integerString += arr[i];
             var integerInt = parseInt(integerString);
             return integerInt;
         }
@@ -87,6 +124,20 @@
         document.write("Sum :<br>");
         let sumByMinor1 = sum(arrByMinor1);
         document.write(sumByMinor1 + " ");
+
+        // Driver code
+        let arr4 = [4, 8, 0, 9, 2, 5, 0, 3, 3, 0];
+        let n4 = arr4.length;
+        let newArray = pushZerosToStart(arr4, n4);
+        document.write("Array start pushing all zeros to end of array :<br>");
+        let n5 = newArray.length;
+        for (let i = 0; i < n5-1; i++)
+            document.write(newArray[i] + " ");
+       
+        document.write("<br>");
+        document.write("Array to fictitious integer :<br>");
+        let fictitiousInt1Unit = fictitiousInteger1Unit(arr);
+        document.write(fictitiousInt1Unit + " ");
         </script>
     </body>
 </html>
